@@ -66,7 +66,7 @@ try{
   })
 
   app.get('/services',async(req,res)=>{
-    const query = {};
+    const query = {price:{$gt:20 , $lt:200}};
     const order = req.query.order === 'asc' ? 1 : -1;
     const cursor = serviceCollection.find(query).sort({price: order});
     const services = await cursor.toArray();
